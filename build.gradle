@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.0'  // 스프링부트 플러그인
+    id 'io.spring.dependency-management' version '1.1.0'  // 스프링의 의존성을 자동으로 관리
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = '17'  // 자바 소스 컴파일 시 사용할 자바 버전
+
+repositories {
+    mavenCentral()  // 의존성을 받을 저장소
+}
+
+dependencies {  // 개발하며 필요한 기능의 의존성
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // JPA
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    //인메모리 데이터베이스
+    runtimeOnly 'com.h2database:h2'
+    // 롬복
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    // 타임리프
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    // 스프링 시큐리티를 사용하기 위한 스타터
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    // 타임리프에서 스프링 시쿠리티를 사용하기 위한 의존성 추가
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+    // 스프링 시큐리티를 테스트하기 위한 의존성
+    testImplementation 'org.springframework.security:spring-security-test'
+
+    // mysql 의존성 추가
+    implementation 'com.mysql:mysql-connector-j'
+}
+
+test {
+    useJUnitPlatform()
+}
